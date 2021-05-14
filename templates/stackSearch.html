@@ -164,6 +164,9 @@
           id="searchBtn"
         >
           Search
+          <div class="spinner-grow text-primary" role="status" id="spinner">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </button>
       </section>
     </div>
@@ -193,7 +196,9 @@
   </body>
 
   <script>
+    $("#spinner").hide();
     $("#searchBtn").click(function () {
+      $("#spinner").show();
       $("#output").html("");
       $.ajax({
         type: "POST",
@@ -213,6 +218,7 @@
         success: function (data) {
           $(".inputdiv").hide();
           $("#output").html(data);
+          $("#spinner").hide();
         },
       });
     });
